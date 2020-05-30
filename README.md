@@ -8,4 +8,3 @@ API: https://api.adviceslip.com/
 - change bg with some API image
 - use useEffect and useState
 - use fetch API
-- set loading when change advice
