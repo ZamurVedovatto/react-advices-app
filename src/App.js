@@ -21,7 +21,14 @@ export default class App extends Component {
   render() {
     const { advice } = this.state;
     return (
-      <div>{advice}</div>
+      <div className="app">
+        <div className="card">
+          <h3 className="heading">{advice}</h3>
+          <button className="button">
+            <span>Give me another advice</span>
+          </button>
+        </div>
+      </div>
     )
   }
 }
