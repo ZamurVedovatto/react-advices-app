@@ -17,14 +17,14 @@ export default class App extends Component {
       })
       .catch(err => console.log(err))
   }
-
+  
   render() {
     const { advice } = this.state;
     return (
       <div className="app">
         <div className="card">
           <h3 className="heading">{advice}</h3>
-          <button className="button">
+          <button className="button" onClick={this.fetchAdvice}>
             <span>Give me another advice</span>
           </button>
         </div>

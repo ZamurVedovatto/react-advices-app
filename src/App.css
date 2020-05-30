@@ -37,19 +37,16 @@
 }
 
 .button {
-  position: relative;
-  outline: none;
-  text-decoration: none;
-  border-radius: 50px;
+  border-radius: .75rem;
   display: flex;
+  outline: none;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  text-transform: uppercase;
-  opacity: 1;
+  opacity: .8;
   background-color: #ffffff;
   padding: .5rem 2rem;
-  border: 1px solid rgba(22, 76, 167, 0.6);
+  border: none;
 }
   
 .button span {
