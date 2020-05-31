@@ -32,7 +32,6 @@ function App() {
         .then(data => {
           const length = data.hits.length -1;
           const rand = (Math.random() * (length)).toFixed(0);
-          console.log(rand);
           const { largeImageURL } = data.hits[rand]
           setImage(largeImageURL);
         })

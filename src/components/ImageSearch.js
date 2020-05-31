@@ -12,7 +12,7 @@ const ImageSearch = ({ setTerm }) => {
     <div style={style.container}>
     <form style={style.form} onSubmit={onSubmit}>
       <input style={style.input} onChange={e => setText(e.target.value)} placeholder="Search Image Term..." />
-      <button style={style.button} type="submit">Search</button>
+      <button style={style.button} type="submit">Change Image</button>
     </form>
   </div>
   )

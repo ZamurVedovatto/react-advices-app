@@ -1,14 +1,13 @@
 ## React Advices App
 
 
-API: https://api.adviceslip.com/
+### Used APIs
+- https://api.adviceslip.com/
+- https://pixabay.com/api/
 
+
+![Alt Text](https://media.giphy.com/media/ckZwKQmUm3eeOxK2dr/source.gif)
 
 ### TODO
-- componentize the card
-- change bg with some API image
-- use useEffect and useState
-- use fetch API
 - create local application using ElectronJs
 - set timer to renew advice
-- change favicon
