@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-export default class App extends Component {
-  state = { 
-    advice: '',
-    isLoading: false
-  };
+function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [advice, setAdvice] = useState('');
+  const [image, setImage] = useState();
+  const [term, setTerm] = useState('');
 
-  componentDidMount() {
-    this.fetchAdvice();
-  }
+  useEffect(() => {
+    async function fetchAdvice() {
+      setIsLoading(true);
+      fetch('https://api.adviceslip.com/advice')
+        .then(res => res.json())
+        .then(data => {
+          const { advice } = data.slip;
+          setAdvice(advice);
+        })
+        .catch(err => console.log(err));
+        setIsLoading(false);
+    }
+    fetchAdvice();
+  }, [])
 
-  fetchAdvice = async () => {
-    this.setState({ isLoading: true, advice: '' });
-    await axios.get('https://api.adviceslip.com/advice')
-      .then(response => {
-        const { advice } = response.data.slip;
-        this.setState({ advice });
-      })
-      .catch(err => console.log(err));
-    this.setState({ isLoading: false });
-  }
-  
-  render() {
-    const { advice, isLoading } = this.state;
-    return (
-      <div className="app">
-        <div className="card">          
-          { 
-            advice === '' ?
-              <h5>Loading...</h5>
-              :
-              <h3 className="heading">{advice}</h3>
-          }     
-          <button className={`button ${ isLoading ? 'd-none': '' }`} onClick={this.fetchAdvice}>
-            <span>Give me another advice</span>
-          </button>
-        </div>
+  return (
+    <div className="app">
+      <div className="card">          
+        { 
+          advice === '' ?
+            <h5>Loading...</h5>
+            :
+            <h3 className="heading">{advice}</h3>
+        }     
+        <button className={`button ${ isLoading ? 'd-none': '' }`}>
+          <span>Give me another advice</span>
+        </button>
       </div>
-    )
-  }
+    </div>
+  )  
 }
+
+export default App;
