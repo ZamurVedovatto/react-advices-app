@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import AdviceCard from './components/AdviceCard';
+import ImageSearch from './components/ImageSearch';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,13 +24,37 @@ function App() {
     fetchAdvice();
   }, [advice])
 
+  useEffect(() => {
+    async function fetchImage() {
+      setIsLoading(true);
+      await fetch(`https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=${term}&image_type=photo&pretty=true`)
+        .then(res => res.json())
+        .then(data => {
+          const length = data.hits.length -1;
+          const rand = (Math.random() * (length)).toFixed(0);
+          console.log(rand);
+          const { largeImageURL } = data.hits[rand]
+          setImage(largeImageURL);
+        })
+        .catch(err => console.log(err));
+      setIsLoading(false);
+    };
+    fetchImage();
+  }, [term, image]);
+
+
   return (
-    <div className="app">
+    <div className="app" style={{ backgroundImage: `url(${image})`}}>
       <AdviceCard
         changeAdvice={() => setAdvice()}
         advice={advice}
         isLoading={isLoading}
       />
+      <div className="search">
+        <ImageSearch
+          setTerm={(text) => setTerm(text)}
+        />
+      </div>
     </div>
   )  
 }
