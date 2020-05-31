@@ -1,5 +1,5 @@
 ## React Advices App
-
+React App project that fetch and display data from Advice Slip JSON API.
 
 ### Used APIs
 - https://api.adviceslip.com/
