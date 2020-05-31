@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import AdviceCard from './components/AdviceCard';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,7 +11,7 @@ function App() {
   useEffect(() => {
     async function fetchAdvice() {
       setIsLoading(true);
-      fetch('https://api.adviceslip.com/advice')
+      await fetch('https://api.adviceslip.com/advice')
         .then(res => res.json())
         .then(data => {
           const { advice } = data.slip;
@@ -20,21 +21,15 @@ function App() {
         setIsLoading(false);
     }
     fetchAdvice();
-  }, [])
+  }, [advice])
 
   return (
     <div className="app">
-      <div className="card">          
-        { 
-          advice === '' ?
-            <h5>Loading...</h5>
-            :
-            <h3 className="heading">{advice}</h3>
-        }     
-        <button className={`button ${ isLoading ? 'd-none': '' }`}>
-          <span>Give me another advice</span>
-        </button>
-      </div>
+      <AdviceCard
+        changeAdvice={() => setAdvice()}
+        advice={advice}
+        isLoading={isLoading}
+      />
     </div>
   )  
 }
